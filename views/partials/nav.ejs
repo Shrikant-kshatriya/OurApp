@@ -1,0 +1,10 @@
+<a class="search-btn"><i class="fa-solid fa-magnifying-glass search dashboard-icon me-2"></i></a>
+
+<a href="/chat"><i class="fa-solid fa-comment dashboard-icon mx-2"></i></a>
+
+<a class="username-socket" href="/users/<%=currUser.username%>"><img class="nav-img mx-2"src="data:image/<%=currUser.picture.contentType%>;base64,
+    <%=currUser.picture.data.toString('base64')%>"></a>
+
+<a href="/create" class="btn btn-success mx-2">Create Post</a>
+
+<a href="/users/logout" class="btn btn-secondary mx-2">Sign Out</a>

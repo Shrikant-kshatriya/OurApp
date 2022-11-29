@@ -1,0 +1,66 @@
+<%- include('partials/header') -%> 
+    
+    <div class="container-fluid main">
+    
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3 mb-3">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-8 col-md-5 col-sm-12 logo-div">
+                        <div class="container-fluid">
+                            <a class="text-decoration-none" href="/"><span class="navbar-brand mb-0 h1 logo">OurApp</span></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-sm-6 dashboard d-flex flex-row justify-content-end align-items-center">
+
+                        <%-include('partials/nav')-%> 
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- alert -->
+        <%- include('partials/alert') -%> 
+
+        <div class="container mid py-md-5">
+            <div class="container w-75">
+                <div class="d-flex">
+                    <a href="/users/<%=user.username%>"><img class="nav-img profile-img mx-2 border border-dark"src="data:image/<%=user.picture.contentType%>;base64,
+                        <%=user.picture.data.toString('base64')%>"></a>
+                    <h3 class="mx-3 mb-0"><%=user.username%></h3>
+
+                    <% if(follow === 'same'){ %> 
+                        <a href="/" class="btn btn-primary ms-5 d-none">Follow <i class="fa-solid fa-user-plus"></i></a>
+                    <% }else if(follow === 'followed'){%> 
+                            
+                        <form action="/users/follow/<%=user.username%>?_method=DELETE" method="post"><button class="btn btn-danger ms-5">Unfollow <i class="fa-solid fa-user-minus"></i></button></form>
+                    <% }else{ %> 
+
+                        <form action="/users/follow/<%=user.username%>" method="post"><button class="btn btn-primary ms-5">Follow <i class="fa-solid fa-user-plus"></i></button></form>
+                    <% } %> 
+                     
+
+                        
+                      
+                </div>
+                <div class="d-flex w-50 justify-content-start my-4 btn-group border-bottom">
+                    <a href="/users/<%=user.username%>" class="btn text-primary">Posts: <%=user.posts.length %></a>
+                    <a href="/users/<%=user.username%>/follower" class=" btn text-primary">Followers: <%=user.follower.length%></a>
+                    <a href="/users/<%=user.username%>/following" class=" btn text-secondary rounded-0 border">Following: <%=user.following.length%></a>
+                </div>
+
+                <!-- following -->
+                <% let i = 0; %> 
+                <% user.following.forEach(following => { %>
+                    <div class="my-2 p-3 d-flex align-items-center border">
+                        <a href="/users/<%=following%>"><img class="nav-img mx-2 border border-dark"src="data:image/<%=user.picture.contentType%>;base64,
+                        <%=pictureData[i]%>"></a>
+                        <a href="/users/<%=following%>"><h6 class="m-0 ms-3 fw-bold"><%=following%></h6></a>                        
+                    </div>
+                    <% i++; %> 
+                <% }); %> 
+
+                
+        </div>
+
+<%- include('partials/footer') -%> 

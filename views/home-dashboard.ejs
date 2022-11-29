@@ -1,0 +1,43 @@
+<%- include('partials/header') -%> 
+    
+    <div class="container-fluid main">
+    
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3 mb-3">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-8 col-md-5 col-sm-12 logo-div">
+                        <div class="container-fluid">
+                            <a class="text-decoration-none" href="/"><span class="navbar-brand mb-0 h1 logo">OurApp</span></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-sm-6 dashboard d-flex flex-row justify-content-end align-items-center">
+
+                        <%- include('partials/nav') -%> 
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- posts -->
+        <% if(dashPosts.length === 0 || typeof dashPosts === 'undefined'){ %>
+            <div class="container mid py-md-5 text-center">
+                <div class="container w-75 px-lg-5 mx-lg-auto">
+                    <h1 class="fw-semibold my-3">Hello, your feed is empty!</h1>
+                    <p class="fw-light fs-4 px-5 my-4">Your feed displays the latest posts from the people you follow. If you don't have any friends to follow that's okay; you can use the "Search" feature in the top menu bar to find people and then follow them.</p>
+                </div>
+            </div>
+
+        <% }else{ %>  
+            <div class="container text-center my-5"><h1>The Latest From Those You Follow</h1></div>
+        <% dashPosts.forEach(user => { %>
+            <div class="container p-3 my-2 d-flex align-items-center border">
+                <a href="/users/<%=user.username%>"><img class="nav-img mx-2 border border-dark"src="data:image/<%=user.picture.contentType%>;base64,
+                <%=user.picture.data.toString('base64')%>"></a>
+                <a href="/posts/<%=user.posts[0]._id%>"><h6 class="m-0 ms-3 fw-bold"><%=user.posts[0].title%></h6></a>                        
+                <p class="text-secondary m-0 h6">&nbsp by <strong><%= user.username %></strong> on <%=user.posts[0].date%></p>                        
+            </div>
+        <% }); }%> 
+
+<%- include('partials/footer') -%> 

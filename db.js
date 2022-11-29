@@ -1,10 +1,11 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
 const passport = require('passport');
 const passportLocalMongoose = require('passport-local-mongoose');
 
 module.exports = function(){
     // connect to db
-    mongoose.connect(`mongodb+srv://admin:OurApp123@cluster0.rpungmw.mongodb.net/ourappDB`);
+    mongoose.connect(process.env.MONGODB_URI);
 
     // Getting model
     const User = require('./models/User');

@@ -12,17 +12,7 @@ module.exports = {
         // validation
         const {username, email, password} = req.body;
         let username_err, email_err, password_err;
-        // if(!username || !email || !password){
-        //     if(!username){
-        //         var username_err = 'Cannot be empty';
-        //     }else if(!email){
-        //         var email_err = 'Cannot be empty';
-        //     }else if(!password){
-        //         var password_err = 'Cannot be empty';
-        //     }
-        //     res.render('home-guest', {username_err,email_err,password_err,username,email,password});
-        // }
-
+        
         if(validator.isEmpty(username)){
             username_err = 'Cannot be empty.';
             res.render('home-guest', {username_err,email_err,password_err,username,email,password});
@@ -33,11 +23,6 @@ module.exports = {
             password_err = 'Password must be atleast 6 characters';
             res.render('home-guest', {username_err,email_err,password_err,username,email,password});
         }else{
-
-        // if(password.length < 6){
-        //     const password_err = 'Password must be atleast 6 characters';
-        //     res.render('home-guest', {password_err,username,email,password});
-        // }
 
         // registration
         // -----checking if alredy registered

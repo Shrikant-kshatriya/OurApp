@@ -15,10 +15,10 @@ module.exports = {
             return "same";
         }else{
             if(currUser.following.length !== 0){
-                for(let i = 0; i <= currUser.following.length; i++){
+                for(let i = 0; i < currUser.following.length; i++){
                     if(currUser.following[i] === user.username){
                         return "followed"}
-                    else{ return "not followed"}
+                    
                 };
             }else {return "not followed"}
         }
